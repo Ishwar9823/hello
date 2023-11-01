@@ -1,4 +1,5 @@
-FROM openjdk:8
-EXPOSE 8080
-ADD target/Hello.jar Hello.jar
-ENTRYPOINT ["java","-jar","/Hello.jar"]
+FROM openjdk:17-jdk-slim
+ARG JAR_FILE=target/Hello-0.0.1-SNAPSHOT.jar
+WORKDIR .
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","app.jar"]
